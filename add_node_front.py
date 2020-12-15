@@ -1,5 +1,6 @@
 # This function is in LinkedList class 
 # Function to insert a new node at the beginning 
+# 4 step process
 def push(self, new_data): 
   
     # 1 & 2: Allocate the Node & 
