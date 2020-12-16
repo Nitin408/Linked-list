@@ -54,59 +54,65 @@ llist.printNthFromLast(4)
 
 
 
-# linked list using recursion 
+# Python program to find n'th node from end using slow 
+# and fast pointer 
   
-  
+# Node class  
 class Node: 
+  
+    # Constructor to initialize the node object 
     def __init__(self, data): 
         self.data = data 
         self.next = None
   
-  
 class LinkedList: 
+  
+    # Function to initialize head 
     def __init__(self): 
         self.head = None
   
-    ''' Given a reference (pointer to pointer) to the 
-        head of a list and an int, push a new node on 
-        the front of the list. '''
-  
-    def push(self, new_data):  # make new node and add 
-                              # into LinkedList 
+    # Function to insert a new node at the beginning 
+    def push(self, new_data): 
         new_node = Node(new_data) 
         new_node.next = self.head 
         self.head = new_node 
   
-    def getNth(self, llist, position): 
+    def printNthFromLast(self, n): 
+        main_ptr = self.head 
+        ref_ptr = self.head  
+      
+        count = 0 
+        if(self.head is not None): 
+            while(count < n ): 
+                if(ref_ptr is None): 
+                    print "% d is greater than the  
+                           no. pf nodes in list" %(n) 
+                    return
+   
+                ref_ptr = ref_ptr.next
+                count += 1
+      
+        if(ref_ptr is None): 
+            self.head = self.head.next
+            if(self.head is not None): 
+                 print "Node no. % d from last is % d " 
+                                   %(n, main_ptr.data) 
+        else: 
+            
   
-        # call recursive method 
-        llist.getNthNode(self.head, position, llist) 
+          while(ref_ptr is not None): 
+              main_ptr = main_ptr.next 
+              ref_ptr = ref_ptr.next
   
-    # recursive method to find Nth Node 
-    def getNthNode(self, head, position, llist): 
-        count = 0  # initialize count 
-        if(head): 
-            if count == position:  # if count is equal to position, 
-                                  # it means we have found the position 
-                print(head.data) 
-            else: 
-                llist.getNthNode(head.next, position - 1, llist) 
-        else:  # if head doesn't exist we have 
-              # traversed the LinkedList 
-            print('Index Doesn\'t exist') 
+          print "Node no. % d from last is % d " 
+                                     %(n, main_ptr.data) 
   
   
-# Driver Code 
-if __name__ == "__main__": 
-    llist = LinkedList() 
-    llist.push(1) 
-    llist.push(4) 
-    llist.push(1) 
-    llist.push(12) 
-    llist.push(1) 
-    # llist.getNth(llist,int(input())) 
-    # Enter the node position here 
-    # first argument is instance of LinkedList 
+# Driver program to test above function 
+llist = LinkedList() 
+llist.push(20) 
+llist.push(4) 
+llist.push(15) 
+llist.push(35) 
   
-    print("Element at Index 3 is", end=" ") 
-    llist.getNth(llist, 3) 
+llist.printNthFromLast(4) 
